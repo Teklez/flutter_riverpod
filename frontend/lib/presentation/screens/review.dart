@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/application/review/review_provider.dart';
 import 'package:frontend/presentation/events/review_event.dart';
 import 'package:frontend/presentation/states/review_state.dart';
+import 'package:frontend/presentation/widgets/drawer.dart';
 import 'package:frontend/presentation/widgets/rating.dart';
 import 'package:frontend/presentation/widgets/rating_Progress_Indicator.dart';
 import 'package:frontend/presentation/widgets/user_review_card.dart';
@@ -24,17 +25,16 @@ class ReviewPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading: IconButton(
-          onPressed: () {
-            context.pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-          ),
-        ),
+        backgroundColor: Color.fromARGB(255, 211, 47, 47),
       ),
-      backgroundColor: Colors.black,
+      drawer: const MenuDrawer(
+        menuItems: [
+          ["Home", "/"],
+          ["Profile", "/profile"],
+          ["About", "/about"],
+          ["Logout", "/login"],
+        ],
+      ),
       body: Builder(
         builder: (context) {
           final state = ref.watch(reviewProvider);

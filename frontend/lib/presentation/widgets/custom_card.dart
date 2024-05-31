@@ -20,7 +20,7 @@ class GameCard extends StatelessWidget {
           AspectRatio(
             aspectRatio: 18 / 14,
             child: Image.asset(
-              game.image,
+              'assets/${game.image}.jpg',
               fit: BoxFit.fill,
             ),
           ),
@@ -47,8 +47,8 @@ class GameCard extends StatelessWidget {
                         color: Colors.yellow,
                       ),
                       const SizedBox(width: 8.0),
-                      const Text(
-                        '4.5',
+                      Text(
+                        game.rating.toString(),
                         // style: theme.textTheme.labelSmall,
                       ),
                       const SizedBox(
@@ -94,7 +94,7 @@ class AGameCard extends StatelessWidget {
           AspectRatio(
             aspectRatio: 18 / 14,
             child: Image.asset(
-              game.image,
+              'assets/${game.image}.jpg',
               fit: BoxFit.fill,
             ),
           ),
@@ -169,7 +169,7 @@ class GameDetail extends StatelessWidget {
             AspectRatio(
               aspectRatio: 18 / 14,
               child: Image.asset(
-                game.image,
+                'assets/${game.image}.jpg',
                 fit: BoxFit.cover,
               ),
             ),

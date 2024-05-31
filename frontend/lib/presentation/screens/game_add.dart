@@ -37,6 +37,29 @@ class _AddGameFormState extends ConsumerState<AddGameForm> {
         TextEditingController(text: widget.initialGame?.publisher ?? '');
   }
 
+  String formatCurrentDate() {
+    DateTime now = DateTime.now();
+    List<String> months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    String month = months[now.month - 1];
+    String day = now.day.toString();
+    String year = now.year.toString();
+
+    return "$month $day, $year";
+  }
+
   @override
   void dispose() {
     _imageUrlController.dispose();
@@ -164,7 +187,7 @@ class _AddGameFormState extends ConsumerState<AddGameForm> {
       description: _descriptionController.text.trim(),
       image: _imageUrlController.text.trim(),
       publisher: _publisherController.text.trim(),
-      releaseDate: DateTime.now().toString(),
+      releaseDate: formatCurrentDate(),
     );
 
     final gameNotifier = ref.read(gameProvider.notifier);

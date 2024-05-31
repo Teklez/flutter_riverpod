@@ -72,7 +72,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       _errorText = '';
     });
 
-    context.go('/home');
+    context.go('/profile');
   }
 
   String _deleteAccount(String id) {
@@ -87,6 +87,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
+        automaticallyImplyLeading: true,
       ),
       body: Consumer(
         builder: (context, watch, child) {

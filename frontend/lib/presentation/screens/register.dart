@@ -4,8 +4,6 @@ import 'package:frontend/application/auth/auth_provider.dart';
 import 'package:frontend/presentation/events/auth_event.dart';
 import 'package:frontend/presentation/states/auth_state.dart';
 import 'package:go_router/go_router.dart';
-import 'login.dart';
-import 'profile.dart';
 
 class RegistrationPage extends ConsumerStatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);

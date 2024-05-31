@@ -32,6 +32,7 @@ void main() {
   });
 
   test('usersProvider should handle fetch users successfully', () async {
+    print('Test: usersProvider should handle fetch users successfully');
     final users = [
       User(id: '1', username: 'User 1', password: 'password1'),
       User(id: '2', username: 'User 2', password: 'password2'),
@@ -44,18 +45,22 @@ void main() {
 
     expect(container.read(usersProvider), isA<UsersLoadSuccess>());
     expect((container.read(usersProvider) as UsersLoadSuccess).users, users);
+    print('Result: Success with fetched users');
   });
 
   test('usersProvider should handle fetch users with no results', () async {
+    print('Test: usersProvider should handle fetch users with no results');
     when(() => mockUsersRepository.fetchUsers()).thenAnswer((_) async => []);
     expect(container.read(usersProvider), UsersInitial());
 
     await usersNotifier.handleFetchUsers(FetchUsers());
 
     expect(container.read(usersProvider), isA<UsersEmpty>());
+    print('Result: Success with no users');
   });
 
   test('usersProvider should handle change status successfully', () async {
+    print('Test: usersProvider should handle change status successfully');
     final updatedUser = User(
         id: '1', username: 'User 1', password: 'password1', status: 'blocked');
     final users = [
@@ -71,9 +76,11 @@ void main() {
 
     expect(container.read(usersProvider), isA<UsersLoadSuccess>());
     expect((container.read(usersProvider) as UsersLoadSuccess).users, users);
+    print('Result: Success with status changed');
   });
 
   test('usersProvider should handle change status failure', () async {
+    print('Test: usersProvider should handle change status failure');
     final updatedUser = User(
         id: '1', username: 'User 1', password: 'password1', status: 'blocked');
 
@@ -84,5 +91,6 @@ void main() {
     await usersNotifier.handleChangeStatus(ChangeStatus(updatedUser));
 
     expect(container.read(usersProvider), isA<UsersError>());
+    print('Result: Failure to change status');
   });
 }

@@ -31,6 +31,7 @@ void main() {
   });
 
   test('authProvider should handle user update correctly', () async {
+    print('Test: authProvider should handle user update correctly');
     when(() => mockAuthRepository.update(any(), any(), any(), any()))
         .thenAnswer(
       (_) async => {'username': 'updatedUser'},
@@ -45,9 +46,11 @@ void main() {
     ));
 
     expect(container.read(authProvider), isA<AuthSuccess>());
+    print('Result: Success');
   });
 
   test('authProvider should handle user login failure', () async {
+    print('Test: authProvider should handle user login failure');
     when(() => mockAuthRepository.login(any(), any())).thenThrow(
       Exception('User name or password is incorrect'),
     );
@@ -55,9 +58,11 @@ void main() {
     await authNotifier.handleUserLoggedIn(
         UserLoggedIn(username: 'test', password: 'wrong_password'));
     expect(container.read(authProvider), isA<AuthFailure>());
+    print('Result: Failure');
   });
 
   test('authProvider should handle user registration correctly', () async {
+    print('Test: authProvider should handle user registration correctly');
     when(() => mockAuthRepository.register(any(), any())).thenAnswer(
       (_) async => {'username': 'newUser'},
     );
@@ -65,9 +70,11 @@ void main() {
     await authNotifier.handleUserRegistered(
         UserRegistered(username: 'newUser', password: 'password'));
     expect(container.read(authProvider), isA<AuthSuccess>());
+    print('Result: Success');
   });
 
   test('authProvider should handle user registration failure', () async {
+    print('Test: authProvider should handle user registration failure');
     when(() => mockAuthRepository.register(any(), any())).thenThrow(
       Exception('Failed to register user'),
     );
@@ -75,36 +82,44 @@ void main() {
     await authNotifier.handleUserRegistered(
         UserRegistered(username: 'newUser', password: 'password'));
     expect(container.read(authProvider), isA<AuthFailure>());
+    print('Result: Failure');
   });
 
   test('authProvider should handle current user retrieval correctly', () async {
+    print('Test: authProvider should handle current user retrieval correctly');
     when(() => mockAuthRepository.getCurrentUser()).thenAnswer(
       (_) async => {'username': 'currentUser'},
     );
     expect(container.read(authProvider), AuthInitial());
     await authNotifier.handleCurrentUser(CurrentUser());
     expect(container.read(authProvider), isA<AuthSuccess>());
+    print('Result: Success');
   });
 
   test('authProvider should handle current user retrieval failure', () async {
+    print('Test: authProvider should handle current user retrieval failure');
     when(() => mockAuthRepository.getCurrentUser()).thenThrow(
       Exception('Not authenticated'),
     );
     expect(container.read(authProvider), AuthInitial());
     await authNotifier.handleCurrentUser(CurrentUser());
     expect(container.read(authProvider), isA<AuthFailure>());
+    print('Result: Failure');
   });
 
   test('authProvider should handle app started correctly', () async {
+    print('Test: authProvider should handle app started correctly');
     when(() => mockAuthRepository.getCurrentUser()).thenAnswer(
       (_) async => {'username': 'currentUser'},
     );
     expect(container.read(authProvider), AuthInitial());
     await authNotifier.handleAppStarted(AppStarted());
     expect(container.read(authProvider), isA<AuthSuccess>());
+    print('Result: Success');
   });
 
   test('authProvider should handle app started failure', () async {
+    print('Test: authProvider should handle app started failure');
     when(() => mockAuthRepository.getCurrentUser()).thenThrow(
       Exception('Not authenticated'),
     );
@@ -112,5 +127,6 @@ void main() {
     await authNotifier.handleAppStarted(AppStarted());
 
     expect(container.read(authProvider), isA<AuthFailure>());
+    print('Result: Failure');
   });
 }

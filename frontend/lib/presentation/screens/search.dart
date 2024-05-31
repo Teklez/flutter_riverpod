@@ -126,7 +126,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           image: DecorationImage(
-            image: AssetImage(game.image),
+            image: AssetImage('assets/${game.image}.jpg'),
             fit: BoxFit.cover,
           ),
         ),

@@ -27,6 +27,29 @@ class _RatingFormState extends ConsumerState<RatingForm> {
     getuser();
   }
 
+  String formatCurrentDate() {
+    DateTime now = DateTime.now();
+    List<String> months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    String month = months[now.month - 1];
+    String day = now.day.toString();
+    String year = now.year.toString();
+
+    return "$month $day, $year";
+  }
+
   Future<void> getuser() async {
     final user = await UserPreferences.getCurrentUser();
     setState(() {
@@ -121,7 +144,7 @@ class _RatingFormState extends ConsumerState<RatingForm> {
                           username: _currentUser,
                           comment: review,
                           rating: ratingValue,
-                          date: DateTime.now().toString(),
+                          date: formatCurrentDate(),
                         );
 
                         ref
