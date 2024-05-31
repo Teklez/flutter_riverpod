@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/presentation/widgets/dialogues.dart';
 import 'package:frontend/presentation/widgets/drawer.dart';
 import 'package:frontend/Domain/users_state.dart';
-import 'package:frontend/Application/users_bloc.dart';
 import 'package:frontend/Application/users_event.dart';
 
 class UsersPage extends ConsumerWidget {

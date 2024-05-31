@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/Application/auth_bloc.dart';
+import 'package:frontend/Application/auth_provider.dart';
 import 'package:frontend/Application/auth_event.dart';
 import 'package:frontend/Domain/auth_state.dart';
 import 'package:frontend/presentation/widgets/dialogues.dart';

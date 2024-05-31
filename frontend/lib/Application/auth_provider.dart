@@ -13,15 +13,15 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepository(authService: authService);
 });
 
-final authNotifierProvider = StateNotifierProvider<AuthBloc, AuthState>((ref) {
+final authNotifierProvider = StateNotifierProvider<Auth, AuthState>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
-  return AuthBloc(authRepository);
+  return Auth(authRepository);
 });
 
-class AuthBloc extends StateNotifier<AuthState> {
+class Auth extends StateNotifier<AuthState> {
   final AuthRepository authRepository;
 
-  AuthBloc(this.authRepository) : super(AuthInitial());
+  Auth(this.authRepository) : super(AuthInitial());
 
   void handleCurrentUser(CurrentUser event) async {
     try {

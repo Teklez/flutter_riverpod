@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:frontend/Application/game_bloc.dart';
+import 'package:frontend/Application/game_provider.dart';
 import 'package:frontend/Domain/game_model.dart';
 import 'package:frontend/presentation/widgets/custom_card.dart';
 

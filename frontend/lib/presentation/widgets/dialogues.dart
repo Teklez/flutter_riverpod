@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:frontend/Application/auth_event.dart';
 
-import 'package:frontend/Application/game_bloc.dart';
+import 'package:frontend/Application/game_provider.dart';
 import 'package:frontend/Application/game_events.dart';
 
 import 'package:frontend/Application/users_event.dart';
