@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:frontend/Domain/game_model.dart';
 import 'package:frontend/Infrastructure/auth_repository.dart';
 import 'package:frontend/Infrastructure/auth_service.dart';
@@ -50,34 +51,90 @@ final reviewRepositoryProvider = Provider((ref) {
   return ReviewRepository(reviewService);
 });
 
+class AddGameFormWrapper extends StatelessWidget {
+  const AddGameFormWrapper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const AddGameForm(buttonName: "Add");
+  }
+}
+
 class BetApp extends StatelessWidget {
   const BetApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'BetEbet',
-      initialRoute: '/onboarding',
-      routes: {
-        '/onboarding': (BuildContext context) => OnboardingScreen(),
-        '/login': (BuildContext context) => const LoginPage(),
-        '/': (BuildContext context) => const HomePage(),
-        '/register': (BuildContext context) => const RegistrationPage(),
-        '/review': (BuildContext context) => const ReviewPage(),
-        '/admin': (BuildContext context) => AdminPage(),
-        '/add_game': (BuildContext context) =>
-            const AddGameForm(buttonName: "Add"),
-        '/about': (BuildContext context) => AboutPage(),
-        '/users': (BuildContext context) => const UsersPage(),
-        '/home': (BuildContext context) => const HomePage(),
-        '/review-edit': (BuildContext context) => ReviewEdit(),
-        '/review-page': (BuildContext context) => RatingForm(),
-        '/game_details': (BuildContext context) => GameDetailPage(
-            game: Game(image: "assets/game1.jpg", name: "Game 1")),
-        '/profile': (BuildContext context) => const ProfilePage(),
-      },
-      theme: ThemeData.dark(),
+    final GoRouter _router = GoRouter(
+      routes: <GoRoute>[
+        GoRoute(
+          path: '/onboarding',
+          builder: (BuildContext context, GoRouterState state) =>  OnboardingScreen(),
+        ),
+        GoRoute(
+          path: '/login',
+          builder: (BuildContext context, GoRouterState state) => const LoginPage(),
+        ),
+        GoRoute(
+          path: '/',
+          builder: (BuildContext context, GoRouterState state) => const HomePage(),
+        ),
+        GoRoute(
+          path: '/register',
+          builder: (BuildContext context, GoRouterState state) => const RegistrationPage(),
+        ),
+        GoRoute(
+          path: '/review',
+          builder: (BuildContext context, GoRouterState state) => const ReviewPage(),
+        ),
+        GoRoute(
+          path: '/admin',
+          builder: (BuildContext context, GoRouterState state) => AdminPage(),
+        ),
+        GoRoute(
+          path: '/add_game',
+          builder: (BuildContext context, GoRouterState state) => const AddGameFormWrapper(),
+        ),
+        GoRoute(
+          path: '/about',
+          builder: (BuildContext context, GoRouterState state) => AboutPage(),
+        ),
+        GoRoute(
+          path: '/users',
+          builder: (BuildContext context, GoRouterState state) => const UsersPage(),
+        ),
+        GoRoute(
+          path: '/home',
+          builder: (BuildContext context, GoRouterState state) => const HomePage(),
+        ),
+        GoRoute(
+          path: '/review-edit',
+          builder: (BuildContext context, GoRouterState state) => const ReviewEdit(),
+        ),
+        GoRoute(
+          path: '/review-page',
+          builder: (BuildContext context, GoRouterState state) => RatingForm(),
+        ),
+        GoRoute(
+          path: '/game_details',
+          builder: (BuildContext context, GoRouterState state) => GameDetailPage(
+            game: Game(image: "assets/game1.jpg", name: "Game 1"),
+          ),
+        ),
+        GoRoute(
+          path: '/profile',
+          builder: (BuildContext context, GoRouterState state) => const ProfilePage(),
+        ),
+      ],
+    );
+
+    return ProviderScope(
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'BetEbet',
+        theme: ThemeData.dark(),
+        routerConfig: _router,
+      ),
     );
   }
 }
